@@ -1,0 +1,5 @@
+{% extends 'page.html' %}
+{% block content %}
+  <p>There are {{count}} log entries in the database. Intentionally there is no public interface to the data collected.</p>
+  <p>You may want to go back to the <a href="{{env.app.get_url('form')}}">upload form</a>.</p>
+{% endblock %}

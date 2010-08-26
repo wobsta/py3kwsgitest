@@ -1,0 +1,33 @@
+{% extends 'page.html' %}
+{% block content %}
+  <p>
+    This simple web app is implemented in Python 3 using
+    <a href="http://bottle.paws.de/">bottle</a>,
+    <a href="http://github.com/defnull/multipart">multipart</a>,
+    <a href="http://jinja.pocoo.org/2/">jinja2</a>, and
+    <a href="http://www.sqlalchemy.org/">sqlalchemy</a>.
+    Its purpose is to test and demonstrate a current solution for WSGI on Python 3.
+    The deployment is done using
+    <a href="http://www.postgresql.org/">postgresql</a> with the
+    <a href="http://python.projects.postgresql.org/">py-postgresql</a> adapter and
+    <a href="http://code.google.com/p/modwsgi/">mod_wsgi</a> in
+    <a href="http://httpd.apache.org/">apache</a> behind an
+    <a href="http://wiki.nginx.org/Main">nginx</a> proxy.
+    See the
+    <a href="http://github.com/wobsta/py3kwsgitest">source code on github</a> and a
+    <a href="http://www.wobsta.de/blog/py3k-wsgi-test">blog post</a> for some details.
+  </p>
+  <p>
+    You can upload a file (maximum file size {{env.cfg.multipart_disk_limit}} kB)
+    and add some comment (maximum text size is about {{env.cfg.multipart_mem_limit}} kB).
+    The web app returns the file name as submitted by the browser, the file size, and the md5 sum of the uploaded file.
+    Additionally, some <a href="{{env.app.get_url('stats')}}">status information</a>
+    is stored in a database for later evaluation (analyse errors etc.).
+    The file content itself is discarded.
+  </p>
+  <form action="{{env.app.get_url('process')}}" method="post" enctype="multipart/form-data">
+    <p class="field"><label for="file">File:</label><input id="file" name="file" type="file"></p>
+    <p class="field"><label for="comment">Comment:</label><textarea id="comment" name="comment" cols="50" rows="5"></textarea></p>
+    <p class="buttons"><input class="submit" type="submit" value="upload"></p>
+  </form>
+{% endblock %}

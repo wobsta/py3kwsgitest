@@ -1,0 +1,6 @@
+body { font-family: 'Trebuchet MS', Verdana, Sans-Serif; }
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+label { float: left; width: 6em; margin-right: 1em; text-align: right; }
+p.field { float: left; clear: left; width: 100%; padding: 0.5em 0; margin: 0; }
+p.buttons { float: none; width: auto; padding-left: 7em; }

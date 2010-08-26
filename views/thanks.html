@@ -1,0 +1,14 @@
+{% extends 'page.html' %}
+{% block content %}
+  <p>Thank you for testing this web app.</p>
+  {% if digest %}
+    <p>
+      You uploaded the file <code>{{env.files.file.filename}}</code>
+      ({{env.files.file.size}} Bytes)
+      with md5 hash <code>{{digest}}</code> successfully.
+    </p>
+  {% else %}
+    <p>No file was uploaded.</p>
+  {% endif %}
+  <p>You may want to go back to the <a href="{{env.app.get_url('form')}}">upload form</a>.</p>
+{% endblock %}
